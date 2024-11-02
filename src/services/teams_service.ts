@@ -1,3 +1,4 @@
+import { ApiError } from "../error/api_error";
 import { prismaClient } from "../prisma";
 
 export class TeamsService {
@@ -5,6 +6,20 @@ export class TeamsService {
     let teams = await prismaClient.teams.findMany();
 
     return teams;
+  }
+
+  async getById(id: number) {
+    let team = await prismaClient.teams.findUnique({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!team) {
+      throw ApiError.notFound("Time não encontrado");
+    }
+
+    return team;
   }
 
   async getAllClassification() {
