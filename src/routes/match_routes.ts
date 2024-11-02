@@ -1,13 +1,14 @@
 import { Router } from "express";
-import MatchController from "../controllers/match_controller";
+import { MatchController } from "../controllers/match_controller";
 
 const matchRouter = Router();
 const matchController = new MatchController();
 
 matchRouter
   .get("/matches", matchController.getAll)
-  .post("/match", matchController.add)
-  .put("/match/:id", matchController.update)
-  .delete("/match/:id", matchController.delete);
+  .get("/matches/:id", matchController.getById)
+  .post("/matches", matchController.add)
+  .put("/matches/:id", matchController.update)
+  .delete("/matches/:id", matchController.delete);
 
 export { matchRouter };

@@ -2,8 +2,10 @@ import "dotenv/config";
 import express from "express";
 import http from "http";
 import { apiErrorHandler } from "./error/api_error_handler";
-import { classificationRouter } from "./routes/classification_routes";
+import { datesRouter } from "./routes/dates_routes";
 import { matchRouter } from "./routes/match_routes";
+import { roundsRouter } from "./routes/rounds_routes";
+import { statisticsRouter } from "./routes/statistics_routes";
 import { teamsRouter } from "./routes/teams_routes";
 
 const app = express();
@@ -12,7 +14,9 @@ const serverHttp = http.createServer(app);
 app.use(express.json());
 app.use(matchRouter);
 app.use(teamsRouter);
-app.use(classificationRouter);
+app.use(statisticsRouter);
+app.use(datesRouter);
+app.use(roundsRouter);
 
 app.use(apiErrorHandler);
 

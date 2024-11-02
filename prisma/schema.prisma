@@ -21,34 +21,34 @@ model Teams {
 }
 
 model Rounds {
-  id      Int    @id
+  id      Int       @id
   name    String
   acronym String
+  match   Matches[]
 
   @@map("rounds")
 }
 
-model Datas {
-  id      Int       @id
-  day     String
-  Matches Matches[]
-  Matches Matches[]
+model Dates {
+  id    Int       @id
+  day   String
+  match Matches[]
 
-  @@map("datas")
+  @@map("dates")
 }
 
 model Matches {
-  id             Int      @id
-  dateId         DateTime
+  id             Int     @id
+  dateId         Int?
+  date           Dates?  @relation(fields: [dateId], references: [id])
   roundId        Int
-  teamHomeId     Int
-  teamHomeGoals  Int
-  teamVisitId    Int
-  teamVisitGoals Int
-  date           Datas    @relation("Dates", fields: [dateId], references: [id])
-  teamHome       Teams    @relation("HomeTeam", fields: [teamHomeId], references: [id])
-  teamVisit      Teams    @relation("VisitTeam", fields: [teamVisitId], references: [id])
-  datasId        Int?
+  round          Rounds? @relation(fields: [roundId], references: [id])
+  teamHomeId     Int?
+  teamHomeGoals  Int?
+  teamVisitId    Int?
+  teamVisitGoals Int?
+  teamHome       Teams?  @relation("HomeTeam", fields: [teamHomeId], references: [id])
+  teamVisit      Teams?  @relation("VisitTeam", fields: [teamVisitId], references: [id])
 
   @@map("matches")
 }
