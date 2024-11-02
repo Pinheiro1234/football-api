@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YourAPI</title>
+    <style>
+      /* Basic Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Full-Screen Layout */
+      body,
+      html {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: black;
+        color: white;
+        font-family: Arial, sans-serif;
+      }
+
+      /* Animated Background */
+      .background {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        background: radial-gradient(circle, rgba(0, 128, 0, 0.7), black);
+        animation: pulse 3s infinite alternate;
+      }
+
+      .background-pattern {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        opacity: 0.1;
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMjIyIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=");
+      }
+
+      /* Animation keyframes */
+      @keyframes pulse {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.85;
+        }
+      }
+
+      /* Content Styling */
+      .content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+        color: #34d399;
+      }
+
+      .cursor {
+        display: inline;
+        animation: blink 1s steps(2, start) infinite;
+      }
+
+      @keyframes blink {
+        from,
+        to {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      .description {
+        font-size: 1.5rem;
+        color: #d1d5db;
+        margin-top: 1rem;
+        opacity: 0;
+        animation: fadeIn 2s ease forwards;
+        animation-delay: 2s;
+      }
+
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Background Layers -->
+    <div class="background"></div>
+    <div class="background-pattern"></div>
+
+    <!-- Main Content -->
+    <div class="content">
+      <h1>
+        <span id="animatedText"></span>
+        <span class="cursor">|</span>
+      </h1>
+      <p class="description">Everything you can imagine is real</p>
+    </div>
+
+    <script>
+      // JavaScript for Typing Effect
+      const fullText = "Football API";
+      let animatedText = document.getElementById("animatedText");
+      let index = 0;
+
+      function typeText() {
+        if (index < fullText.length) {
+          animatedText.textContent += fullText.charAt(index);
+          index++;
+          setTimeout(typeText, 200);
+        }
+      }
+
+      typeText();
+    </script>
+  </body>
+</html>
