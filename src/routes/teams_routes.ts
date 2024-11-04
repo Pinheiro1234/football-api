@@ -5,8 +5,8 @@ const teamsRouter = Router();
 const teamsController = new TeamsController();
 
 teamsRouter
+  .get("/teams/classification", teamsController.getAllClassification)
   .get("/teams", teamsController.getAll)
-  .get("/teams/:id", teamsController.getById)
-  .get("/teams/classification", teamsController.getAllClassification);
+  .get("/teams/:id", teamsController.getById);
 
 export { teamsRouter };
