@@ -29,8 +29,21 @@ export class TeamsController {
 
   async getAllClassification(req: Request, res: Response, next: NextFunction) {
     const service = new TeamsService();
-    let teams = await service.getAllClassification();
+    let classifications = await service.getAllClassification();
 
-    return res.status(200).json(teams).end();
+    return res.status(200).json(classifications).end();
+  }
+
+  async getClassificationById(req: Request, res: Response, next: NextFunction) {
+    const { id } = req.params;
+
+    if(!id) {
+      throw ApiError.badRequest();
+    }
+
+    const service = new TeamsService();
+    let classification = await service.getClassificationById(Number(id));
+
+    return res.status(200).json(classification).end();
   }
 }

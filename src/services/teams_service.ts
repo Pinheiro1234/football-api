@@ -100,4 +100,84 @@ export class TeamsService {
 
     return classification;
   }
+
+  async getClassificationById(id: number) {
+    const team = await prismaClient.teams.findUnique({
+      select: {
+        id: true,
+        name: true,
+        imgUrl: true,
+        homeGames: {
+          select: {
+            teamHomeGoals: true,
+            teamVisitGoals: true,
+          },
+        },
+        visitGames: {
+          select: {
+            teamHomeGoals: true,
+            teamVisitGoals: true,
+          },
+        },
+      }, where: {
+        id: id
+      }
+    });
+
+    if (!team) {
+      throw ApiError.notFound('Time não encontrado!');
+    }
+
+    // Calcula pontos e classificação
+    let points = 0;
+    let wins = 0;
+    let draws = 0;
+    let losses = 0;
+
+    // Processa jogos como time da casa
+    team.homeGames.forEach((game) => {
+      if ((game.teamHomeGoals ?? 0) > (game.teamVisitGoals ?? 0)) {
+        wins++;
+        points += 3;
+      } else if (
+        game.teamHomeGoals === game.teamVisitGoals &&
+        game.teamHomeGoals &&
+        game.teamVisitGoals
+      ) {
+        draws++;
+        points += 1;
+      } else {
+        losses++;
+      }
+    });
+
+    // Processa jogos como visitante
+    team.visitGames.forEach((game) => {
+      if ((game.teamVisitGoals ?? 0) > (game.teamHomeGoals ?? 0)) {
+        wins++;
+        points += 3;
+      } else if (
+        game.teamVisitGoals === game.teamHomeGoals &&
+        game.teamHomeGoals &&
+        game.teamVisitGoals
+      ) {
+        draws++;
+        points += 1;
+      } else {
+        losses++;
+      }
+    });
+
+    const classification = {
+      id: team.id,
+      name: team.name,
+      imgUrl: team.imgUrl,
+      points,
+      wins,
+      draws,
+      losses,
+    };
+
+    return classification;
+  }
 }
