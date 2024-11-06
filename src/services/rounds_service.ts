@@ -34,7 +34,7 @@ export class RoundsService {
     });
 
     // Transformando os campos `round` e `date` para strings diretas
-    let mapped = matches.map((match) => ({
+    let mapped = matches.map((match: any) => ({
       ...match,
       round: match.round?.name,
       date: match.date?.day,

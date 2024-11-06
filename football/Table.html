@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/Table.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><img src="imagens/campeonato-brasileiro.svg" style="height: 79px; width: 59px; "></div>
+            <div class="menu-btn">
+                <i class="fa fa-bars fa-2x" onclick="menuShow()"></i>
+            </div>
+            <ul>
+                <li>
+                    <a href="/football/Home.html" class="active">Home</a>
+                </li>
+                <li>
+                    <a href="/football/Match.html" class="active">Resultados de partidas</a>
+                </li>
+                <li>
+                    <a href="/football/Chart.html">Grafico Times</a>
+                </li>
+                <li>
+                    <a href="/football/Create.html">Cadastro de partidas</a>
+                </li>
+                <li>
+                    <a href="/football/Table.html">Classificação</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <main>
+            <div class="table">
+                <div class="table_header">
+                    <p>Classificação Brasileirão 2024</p>
+                    <div>
+                        <button style="cursor: pointer;" class="add_novo" id="btnChamarActionTravel"> Adicionar Nova + </button>
+                    </div>
+                </div>
+                <div class="table-section">
+                    <table id="myTable">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center">CLUBE</th>
+                                <th style="text-align:center">PONTOS</th>
+                                <th style="text-align:center">VIT</th>
+                                <th style="text-align:center">E</th>
+                                <th style="text-align:center">D</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="/football/js/Table.js"></script>
+    
+</body>
+</html>
+    
+   
+
+    

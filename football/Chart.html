@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/Chart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+</head>
+<body style="overflow-x:hidden; overflow-y: hidden;">
+    <header>
+        <nav>
+            <div class="logo"><img src="imagens/campeonato-brasileiro.svg" style="height: 79px; width: 59px; "></div>
+            <div class="menu-btn">
+                <i class="fa fa-bars fa-2x" onclick="menuShow()"></i>
+            </div>
+            <ul>
+                <li>
+                    <a href="/football/Home.html" class="active">Home</a>
+                </li>
+                <li>
+                    <a href="/football/Match.html" class="active">Resultados de partidas</a>
+                </li>
+                <li>
+                    <a href="/football/Chart.html">Grafico Times</a>
+                </li>
+                <li>
+                    <a href="/football/Create.html">Cadastro de partidas</a>
+                </li>
+                <li>
+                    <a href="/football/Table.html">Classificação</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+     <div class="controls">
+        <!-- Seleção de rodada -->
+        <label for="round-select">Selecionar Rodada:</label>
+        <select id="dropdownTeam1">
+        </select>
+
+        <!-- Botão para pesquisar partidas da rodada selecionada -->
+        <button class="search-button" onclick="generateChart()">Pesquisar</button>
+    </div>
+    <div class="center" style="width: 100vw;display: flex;align-items: center;justify-content: center;">
+        <div class="chart" style = "width:800px;height:800px;">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+    
+    
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/football/js/Chart.js"></script>
+</body>
+</html>
+
+
