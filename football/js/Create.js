@@ -125,7 +125,8 @@ document.getElementById('create').addEventListener('click', async function() {
         const dados = await response.json();
         debugger
         console.log('Dados recebidos:', dados);
-        window.location.href = "http://127.0.0.1:5500/football/Match.html";
+        document.getElementById('formcreate').reset();
+        window.location.href = '/Create';  // Redireciona para a página de cadastro limpa
 
     } catch (error) {
         console.error('Erro:', error);
